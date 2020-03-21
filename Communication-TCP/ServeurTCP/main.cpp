@@ -14,7 +14,8 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    Server* serveur = new Server();
+    Server Serveur;
+    Serveur.startServer();
 
     return a.exec();
 }

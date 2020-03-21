@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QTcpSocket>
+#include <QTimer>
 
 class Client : public QTcpSocket
 {
@@ -13,10 +14,16 @@ public:
     ~Client();
 
 public slots:
-    void onReadyRead();
+    void readMessage();
+    void socketDisconnected();
+    void socketConnected();
+    void sendData();
+    void connectionError_Handler(QAbstractSocket::SocketError error);
 
 private:
     QTcpSocket  _socket;
+    QTimer _databeatTimer;
+    QMessageLogger logger;
 };
 
 #endif // CLIENT_H
