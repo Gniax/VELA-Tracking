@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Page d'accueil</title>
+	<style>
+		body, html {
+  			height: 100%;
+  			margin: 0;
+  			font-family: Arial, Helvetica, sans-serif;
+		}
+
+		.background-image{
+			background-image: url("fondindex.jpg");
+			filter: blur(3px);
+			height: 100%; 
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		.style-text{			
+  			color: white;
+			font-weight: bold;
+			position: fixed;
+			text-shadow: 1px 3px black;
+			left: 50%;
+			top: 5%;
+			transform: translate(-50%, -50%);
+			z-index: 2;
+  			width: 80%;
+  			padding: 20px;
+  			text-align: center;
+		}
+		.barre-bouton{			
+			background-color: #f1f1f1;
+			position: fixed;
+			padding: 5px;
+			left: 20%;
+			top: 10%;
+			border: none;
+			border-radius: 4px;
+			width: 1000px;
+
+		}
+		.bouton-cdiffere{
+			display: inline-block;
+  			border-radius: 4px;
+  			background-color: #000FFF;
+  			border: none;
+  			color: #FFFFFF;
+  			text-align: center;
+  			font-size: 20px;
+  			padding: 5px;
+			width: 290px;
+  			transition: all 0.5s;
+			cursor: pointer;
+			text-shadow: 1px 3px black ;  
+			box-shadow: 1px 2px black;
+			position : relative;
+		}
+
+		.bouton-classement{
+			display: inline-block;
+  			border-radius: 4px;
+  			background-color: #000FFF;
+  			border: none;
+  			color: #FFFFFF;
+  			text-align: center;
+  			font-size: 20px;
+  			padding: 5px;
+			width: 290px;
+  			transition: all 0.5s;
+			cursor: pointer;
+			text-shadow: 1px 3px black ;
+			position : relative;
+			left: 7%;
+			box-shadow: 1px 2px black;
+		}
+
+		.bouton-infos{
+			display: inline-block;
+  			border-radius: 4px;
+  			background-color: #000FFF;
+  			border: none;
+  			color: #FFFFFF;
+  			text-align: center;
+  			font-size: 20px;
+  			padding: 5px;
+			width: 290px;
+  			transition: all 0.5s;
+			cursor: pointer;
+			text-shadow: 1px 3px black ;
+			position : relative;
+			left: 12%;
+			box-shadow: 1px 2px black;
+		}
+		
+		.logo{
+			box-shadow: 1px 2px black;
+			position: absolute;
+			top: 35%;
+			left: 39%;
+			height: 400px;
+			width: 400px;
+		}
+
+	</style>
+</head>
+
+<body>
+			
+		<div class ="background-image"></div>
+		<div class="style-text">
+			<h1>Bienvenue sur le site internet du suivi de course VELA Tracking !</h1>
+		</div>
+		<div class="barre-bouton">
+			<input type="submit" value="Suivi de course en différé" class="bouton-cdiffere">
+			<input type="submit" value="Classement de la course" class="bouton-classement">
+			<input type="submit" value="Informations VELA Tracking" class="bouton-infos">
+		</div>
+		<img src="Logo-projet.png" alt="Logo VELA Tracking"  class="logo">
+
+</body>
+
+
+</html>
