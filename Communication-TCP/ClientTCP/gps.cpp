@@ -99,18 +99,22 @@ void GPS::run()
                         if (a==4)
                         {
                             latitude=p;
+                            logger.info(p);
                         }
                         if (a==5)
                         {
                             dLatitude=p;
+                            logger.info(p);
                         }
                         if (a==6)
                         {
                             longitude=p;
+                            logger.info(p);
                         }
                         if (a==7)
                         {
                             dLongitude=p;
+                            logger.info(p);
                         }
                         if (a==8)
                         {
@@ -119,7 +123,9 @@ void GPS::run()
                              char vit[]="";
                              sprintf(vit,"%lf",z);
                              vitesse=vit;
+                             logger.info(p);
                         }
+
                             p = strtok(NULL, d);
                         }
                 }
