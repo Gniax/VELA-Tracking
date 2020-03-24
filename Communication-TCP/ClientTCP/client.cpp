@@ -9,9 +9,13 @@
 #include <QMessageLogger>
 #include <QNetworkConfiguration>
 #include <QNetworkProxy>
+#include <string>
 
 #define HOSTADDRESS "127.0.0.1"
 #define PORT 4242
+using namespace std;
+
+static inline std::string map_to_string(map<string, string>  &m);
 
 Client::Client() : _socket(this)
 {
@@ -40,6 +44,11 @@ Client::Client() : _socket(this)
 
 Client::~Client() { }
 
+void Client::setGPS(GPS* gps)
+{
+    _gps = gps;
+}
+
 // Reçoit le message initial du serveur
 void Client::readMessage()
 {
@@ -53,9 +62,26 @@ void Client::sendData()
     {
         _databeatTimer.start(5000);
         logger.info("Timeout socket connected");
-        _socket.write("Coucou");
-        _socket.flush();
-        _socket.waitForBytesWritten(1000);
+        if(_gps != nullptr)
+        {
+            // Here we can send GPS DATA
+            if(_gps->vitesse != nullptr && _gps->latitude != nullptr && _gps->longitude != nullptr &&
+               _gps->dLatitude != nullptr && _gps->dLongitude != nullptr)
+            {
+                std::map<string, string> gpsData;
+                gpsData["Vitesse"] = _gps->vitesse;
+                gpsData["Latitude"] = _gps->latitude;
+                gpsData["Longitude"] = _gps->longitude;
+                gpsData["dLatitude"] = _gps->dLatitude;
+                gpsData["dLongitude"] = _gps->dLongitude;
+
+                string s_gpsData = map_to_string(gpsData);
+
+                _socket.write(s_gpsData.c_str());
+                _socket.flush();
+                _socket.waitForBytesWritten(1000);
+            }
+        }
     }
     else
     {
@@ -99,5 +125,18 @@ void Client::connectionError_Handler(QAbstractSocket::SocketError error)
     logger.info("Reconnexion...");
     QThread::currentThread()->sleep(1000);
     _socket.connectToHost(QHostAddress(HOSTADDRESS), PORT);
+}
+
+std::string map_to_string(map<string, string>  &m) {
+string output = "";
+string result = "";
+
+    for (auto it = m.cbegin(); it != m.cend(); it++) {
+        output += (it->first) + ":" + it->second + ", ";
+    }
+
+    result = output.substr(0, output.size() - 2 );
+
+  return result;
 }
 
