@@ -61,7 +61,7 @@ void Client::sendData()
     if(_socket.state() == QAbstractSocket::ConnectedState)
     {
         _databeatTimer.start(5000);
-        logger.info("Timeout socket connected");
+        //logger.info("Timeout socket connected");
         if(_gps != nullptr)
         {
             // Here we can send GPS DATA
@@ -85,7 +85,7 @@ void Client::sendData()
     }
     else
     {
-        logger.info("Timeout socket disconnected");
+        //logger.info("Timeout socket disconnected");
         _databeatTimer.start(3000);
         _socket.connectToHost(QHostAddress(HOSTADDRESS), PORT);
     }

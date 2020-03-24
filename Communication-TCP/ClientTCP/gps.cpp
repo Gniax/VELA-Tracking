@@ -22,7 +22,6 @@ GPS::GPS(QObject* parent) : QThread(parent)
 
 void GPS::run()
 {
-    while(true){
     // Ouverture du port USB
         int USB = open( "/dev/ttyUSB0", O_RDWR| O_NOCTTY );
 
@@ -63,69 +62,69 @@ void GPS::run()
         cout << "Error " << errno << " from tcsetattr" << endl;
         }
 
-        int n = 0,
-        spot = 0;
-        char buf = '\0';
+        while(true)
+        {
+            int n = 0,
+            spot = 0;
+            char buf = '\0';
 
-    /* récupération de la réponse*/
-        char response[1024];
-        string test(response);
+        /* récupération de la réponse*/
+            char response[1024];
+            string test(response);
 
-        memset(response, '\0', sizeof response);
+            memset(response, '\0', sizeof response);
 
-        do {
-            n = read( USB, &buf, 1 );
-            sprintf( &response[spot], "%c", buf );
-            spot += n;
+            do {
+                n = read( USB, &buf, 1 );
+                sprintf( &response[spot], "%c", buf );
+                spot += n;
+            } while( buf != '\r' && n > 0);
 
-
-        } while( buf != '\r' && n > 0);
-
-        if (n < 0) {
-            cout << "Erreur de lecture: " << strerror(errno) << endl;
-        }
-        else if (n == 0) {
-            cout << "pas de trame!" << endl;
-        }
-        else {
-            if (response[0]=='$'&&response[1]=='G'&&response[2]=='P'&&response[3]=='R'&&response[4]=='M'&&response[5]=='C' && strlen(response)>=60){//vérification de la bonne trame récupérée
-                int a =0;
-                char d[] = ",";
-                char *p = strtok(response, d);
-                while(p != NULL)/*trie de la trame*/
-                {
-                    a++;
-                if (a==4)
-                {
-                    latitude=p;
-                }
-                if (a==5)
-                {
-                    dLatitude=p;
-                }
-                if (a==6)
-                {
-                    longitude=p;
-                }
-                if (a==7)
-                {
-                    dLongitude=p;
-                }
-                if (a==8)
-                {
-                     double z = atoi(p);
-                     z=z*1.852; // passage des noeuds au km/h
-                     char vit[]="";
-                     sprintf(vit,"%lf",z);
-                     vitesse=vit;
-                }
-                    p = strtok(NULL, d);
-                }
+            if (n < 0) {
+                cout << "Erreur de lecture: " << strerror(errno) << endl;
             }
-            else {
-                sleep(1);
-            //faire repartir le programme du début si mauvaise trame
+            else if (n == 0) {
+                cout << "pas de trame!" << endl;
             }
-            }
+            else
+            {
+                if (response[0]=='$'&&response[1]=='G'&&response[2]=='P'&&response[3]=='R'&&response[4]=='M'&&response[5]=='C' && strlen(response)>=60)
+                {//vérification de la bonne trame récupérée
+                    int a =0;
+                    char d[] = ",";
+                    char *p = strtok(response, d);
+                    while(p != NULL)/*trie de la trame*/
+                    {
+                        a++;
+                        if (a==4)
+                        {
+                            latitude=p;
+                        }
+                        if (a==5)
+                        {
+                            dLatitude=p;
+                        }
+                        if (a==6)
+                        {
+                            longitude=p;
+                        }
+                        if (a==7)
+                        {
+                            dLongitude=p;
+                        }
+                        if (a==8)
+                        {
+                             double z = atoi(p);
+                             z=z*1.852; // passage des noeuds au km/h
+                             char vit[]="";
+                             sprintf(vit,"%lf",z);
+                             vitesse=vit;
+                        }
+                            p = strtok(NULL, d);
+                        }
+                }
+                //faire repartir le programme du début si mauvaise trame
+
+                }
         }
 }
