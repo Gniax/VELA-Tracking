@@ -65,8 +65,8 @@ void Client::sendData()
         if(_gps != nullptr)
         {
             // Here we can send GPS DATA
-            if(_gps->vitesse != nullptr && _gps->latitude != nullptr && _gps->longitude != nullptr &&
-               _gps->dLatitude != nullptr && _gps->dLongitude != nullptr)
+            if(strcmp(_gps->vitesse, "\r") != 0 && strcmp(_gps->latitude, "\r") != 0 && strcmp(_gps->longitude, "\r") != 0 &&
+               strcmp(_gps->dLatitude, "\r") != 0 && strcmp(_gps->dLongitude, "\r") != 0)
             {
                 std::map<string, string> gpsData;
                 gpsData["Vitesse"] = _gps->vitesse;

@@ -17,6 +17,17 @@
 using namespace std;
 GPS::GPS(QObject* parent) : QThread(parent)
 {
+    latitude = new char();
+    longitude = new char();
+    dLatitude = new char();
+    dLongitude = new char();
+    vitesse = new char();
+    *latitude = '\r';
+    *longitude = '\r';
+    *dLatitude = '\r';
+    *dLongitude = '\r';
+    *vitesse = '\r';
+
     logger.info("Initialisation du GPS");
 }
 
@@ -82,6 +93,7 @@ void GPS::run()
 
             if (n < 0) {
                 cout << "Erreur de lecture: " << strerror(errno) << endl;
+                sleep(1);
             }
             else if (n == 0) {
                 cout << "pas de trame!" << endl;
@@ -98,22 +110,22 @@ void GPS::run()
                         a++;
                         if (a==4)
                         {
-                            latitude=p;
+                            strcpy(latitude, p);
                             logger.info(p);
                         }
                         if (a==5)
                         {
-                            dLatitude=p;
+                            strcpy(dLatitude, p);
                             logger.info(p);
                         }
                         if (a==6)
                         {
-                            longitude=p;
+                            strcpy(longitude, p);
                             logger.info(p);
                         }
                         if (a==7)
                         {
-                            dLongitude=p;
+                            strcpy(dLongitude, p);
                             logger.info(p);
                         }
                         if (a==8)
@@ -122,8 +134,7 @@ void GPS::run()
                              z=z*1.852; // passage des noeuds au km/h
                              char vit[]="";
                              sprintf(vit,"%lf",z);
-                             vitesse=vit;
-                             logger.info(p);
+                             strcpy(vitesse, vit);
                         }
 
                             p = strtok(NULL, d);
@@ -132,5 +143,7 @@ void GPS::run()
                 //faire repartir le programme du début si mauvaise trame
 
                 }
+            logger.info("[GPS] Tour de boucle finit...");
+            sleep(1);
         }
 }
