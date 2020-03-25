@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QRunnable>
 #include <QThread>
+#include <string>
 
 class GPS : public QThread
 {
@@ -12,15 +13,22 @@ class GPS : public QThread
 
 public:
     explicit GPS(QObject *parent = 0);
+    ~GPS();
     void run();
-    char* latitude;
-    char* longitude;
-    char* dLatitude;
-    char* dLongitude;
-    char* vitesse;
+    std::string getLatitude();
+    std::string getLongitude();
+    std::string getDlatitude();
+    std::string getDlongitude();
+    std::string getVitesse();
+
 
 private:
     QMessageLogger logger;
+    std::string _latitude;
+    std::string _longitude;
+    std::string _dLatitude;
+    std::string _dLongitude;
+    std::string _vitesse;
 };
 
 #endif // GPS_H

@@ -17,19 +17,16 @@
 using namespace std;
 GPS::GPS(QObject* parent) : QThread(parent)
 {
-    latitude = new char();
-    longitude = new char();
-    dLatitude = new char();
-    dLongitude = new char();
-    vitesse = new char();
-    *latitude = '\r';
-    *longitude = '\r';
-    *dLatitude = '\r';
-    *dLongitude = '\r';
-    *vitesse = '\r';
+    _latitude = "\r";
+    _longitude = "\r";
+    _dLatitude = "\r";
+    _dLongitude = "\r";
+    _vitesse = "\r";
 
     logger.info("Initialisation du GPS");
 }
+
+GPS::~GPS(){}
 
 void GPS::run()
 {
@@ -110,22 +107,26 @@ void GPS::run()
                         a++;
                         if (a==4)
                         {
-                            strcpy(latitude, p);
+                            string tmp(p);
+                            _latitude = tmp;
                             logger.info(p);
                         }
                         if (a==5)
                         {
-                            strcpy(dLatitude, p);
+                            string tmp(p);
+                            _dLatitude = tmp;
                             logger.info(p);
                         }
                         if (a==6)
                         {
-                            strcpy(longitude, p);
+                            string tmp(p);
+                            _longitude = tmp;
                             logger.info(p);
                         }
                         if (a==7)
                         {
-                            strcpy(dLongitude, p);
+                            string tmp(p);
+                            _dLongitude = tmp;
                             logger.info(p);
                         }
                         if (a==8)
@@ -134,7 +135,8 @@ void GPS::run()
                              z=z*1.852; // passage des noeuds au km/h
                              char vit[]="";
                              sprintf(vit,"%lf",z);
-                             strcpy(vitesse, vit);
+                             string tmp(vit);
+                             _vitesse = tmp;
                         }
 
                             p = strtok(NULL, d);
@@ -147,3 +149,10 @@ void GPS::run()
             sleep(1);
         }
 }
+
+std::string GPS::getLatitude() { return _latitude; };
+std::string GPS::getLongitude() { return _longitude; };
+std::string GPS::getDlatitude() { return _dLatitude; };
+std::string GPS::getDlongitude() { return _dLongitude; };
+std::string GPS::getVitesse() { return _vitesse; };
+

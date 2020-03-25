@@ -64,18 +64,24 @@ void Client::sendData()
         //logger.info("Timeout socket connected");
         if(_gps != nullptr)
         {
+            string tempVit = _gps->getVitesse(),
+                   tempLat = _gps->getLatitude(),
+                   tempLong = _gps->getLongitude(),
+                   tempDlat = _gps->getDlatitude(),
+                   tempDlong = _gps->getDlongitude();
             // Here we can send GPS DATA
-            if(strcmp(_gps->vitesse, "\r") != 0 && strcmp(_gps->latitude, "\r") != 0 && strcmp(_gps->longitude, "\r") != 0 &&
-               strcmp(_gps->dLatitude, "\r") != 0 && strcmp(_gps->dLongitude, "\r") != 0)
+            if(tempVit != "\r" && tempLat != "\r" && tempLong != "\r" && tempDlat != "\r" && tempDlong != "\r")
             {
                 std::map<string, string> gpsData;
-                gpsData["Vitesse"] = _gps->vitesse;
-                gpsData["Latitude"] = _gps->latitude;
-                gpsData["Longitude"] = _gps->longitude;
-                gpsData["dLatitude"] = _gps->dLatitude;
-                gpsData["dLongitude"] = _gps->dLongitude;
+
+                gpsData["Vitesse"] = tempVit;
+                gpsData["Latitude"] = tempLat;
+                gpsData["Longitude"] = tempLong;
+                gpsData["dLatitude"] = tempDlat;
+                gpsData["dLongitude"] = tempDlong;
 
                 string s_gpsData = map_to_string(gpsData);
+                logger.info("infos avant envoie: ", s_gpsData.c_str());
 
                 _socket.write(s_gpsData.c_str());
                 _socket.flush();
