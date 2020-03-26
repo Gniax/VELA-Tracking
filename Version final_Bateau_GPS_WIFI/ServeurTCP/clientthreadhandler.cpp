@@ -10,14 +10,18 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#include <string>
+#include <iostream>
+#include <sstream>
 
 // Functions prototypes
 static inline QString toIPv4Address(QHostAddress source);
-
+static inline std::map<std::string, std::string> string_to_map(std::string data);
 
 ClientThreadHandler::ClientThreadHandler(qintptr ID, QObject* parent) : QThread(parent)
 {
     this->socketDescriptor = ID;
+    _timestamp = "\r";
 }
 
 void ClientThreadHandler::run()
@@ -63,7 +67,33 @@ void ClientThreadHandler::incomingData()
          return;
 
     QByteArray data = socket->readAll();
-    qDebug() << data;
+    std::string sData = data.toStdString();
+    std::map<std::string, std::string> gpsInfos = string_to_map(sData);
+
+    qDebug() << "Informations reçu: " << data;
+
+    std::string mode = gpsInfos["Mode"];
+    std::string vitesse = gpsInfos["Vitesse"];
+    std::string latitude = gpsInfos["Latitude"] ;
+    std::string longitude = gpsInfos["Longitude"];
+    std::string dLatitude = gpsInfos["dLatitude"];
+    std::string dLongitude = gpsInfos["dLongitude"];
+    std::string timestamp = gpsInfos["Timestamp"];
+
+    // Si le timestamp reçu est différent du précédent, c'est que les coordonnées ont bien été actualisées
+    // Note : le précédent timestamp à été stocké au préalable dans la variable...
+    if(_timestamp != timestamp)
+    {
+        _timestamp = timestamp;
+        if(mode == "COUREUR")
+        {
+
+        }
+        else if(mode == "BALISE")
+        {
+
+        }
+    }
 }
 
 // Ferme le thread lorsque le client est déconnecté
@@ -86,4 +116,22 @@ QString toIPv4Address(QHostAddress qhostaddr)
         return ip4String = ip4Address.toString();
     }
     return "bad ip";
+}
+
+std::map<std::string, std::string> string_to_map(std::string input)
+{
+    std::istringstream iss(input.c_str());
+    std::map<std::string, std::string> flags;
+    std::string token;
+    bool first = true;
+    while (std::getline(iss, token, ',')) {
+        size_t pos = token.find(':');
+        if(first == true)
+            flags[token.substr(0, pos)] = token.substr(pos + 1);
+        else
+            flags[token.substr(1, pos-1)] = token.substr(pos + 1);
+
+        first = false;
+    }
+    return flags;
 }

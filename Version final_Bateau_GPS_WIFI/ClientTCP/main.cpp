@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
     GPS* gps = new GPS();
     QObject::connect(gps, SIGNAL(finished()), gps, SLOT(deleteLater()));
     gps->start();
+    gps->setMode("BALISE"); // COUREUR OU BALISE
 
     Client* client = new Client();
     client->setGPS(gps);

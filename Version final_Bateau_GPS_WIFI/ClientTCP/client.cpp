@@ -10,6 +10,7 @@
 #include <QNetworkConfiguration>
 #include <QNetworkProxy>
 #include <string>
+#include <sstream>
 
 #define HOSTADDRESS "127.0.0.1"
 #define PORT 4242
@@ -69,19 +70,27 @@ void Client::sendData()
                    tempLong = _gps->getLongitude(),
                    tempDlat = _gps->getDlatitude(),
                    tempDlong = _gps->getDlongitude();
+            time_t tempTimestamp =_gps->getTimestamp();
             // Here we can send GPS DATA
-            if(tempVit != "\r" && tempLat != "\r" && tempLong != "\r" && tempDlat != "\r" && tempDlong != "\r")
+            if(tempVit != "\r" && tempLat != "\r" && tempLong != "\r" && tempDlat != "\r" && tempDlong != "\r" && tempTimestamp != 0)
             {
+                // Convert timestamp to string
+                std::stringstream ss;
+                ss << tempTimestamp;
+                std::string s_tempTimestamp = ss.str();
+
                 std::map<string, string> gpsData;
 
+                gpsData["Mode"] = _gps->getMode();
                 gpsData["Vitesse"] = tempVit;
                 gpsData["Latitude"] = tempLat;
                 gpsData["Longitude"] = tempLong;
                 gpsData["dLatitude"] = tempDlat;
                 gpsData["dLongitude"] = tempDlong;
+                gpsData["Timestamp"] = s_tempTimestamp;
 
                 string s_gpsData = map_to_string(gpsData);
-                logger.info("infos avant envoie: ", s_gpsData.c_str());
+                //logger.info("infos avant envoie: ", s_gpsData.c_str());
 
                 _socket.write(s_gpsData.c_str());
                 _socket.flush();
@@ -106,6 +115,7 @@ void Client::socketConnected ()
 void Client::socketDisconnected ()
 {
     logger.info("Socket déconnecté");
+    logger.info("En attente de reconnexion...");
 }
 
 void Client::connectionError_Handler(QAbstractSocket::SocketError error)
@@ -128,7 +138,7 @@ void Client::connectionError_Handler(QAbstractSocket::SocketError error)
 
     _socket.abort();
     _socket.close();
-    logger.info("Reconnexion...");
+    logger.info("Erreut socket : reconnexion en cours...");
     QThread::currentThread()->sleep(1000);
     _socket.connectToHost(QHostAddress(HOSTADDRESS), PORT);
 }

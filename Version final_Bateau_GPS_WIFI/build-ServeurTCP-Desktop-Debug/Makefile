@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../ServeurTCP -I. -isystem /usr/include/arm-linux-gnueabihf/qt5 -isystem /usr/include/arm-linux-gnueabihf/qt5/QtNetwork -isystem /usr/include/arm-linux-gnueabihf/qt5/QtCore -I. -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++
+INCPATH       = -I../ServeurTCP -I. -isystem /usr/include/i386-linux-gnu/qt5 -isystem /usr/include/i386-linux-gnu/qt5/QtNetwork -isystem /usr/include/i386-linux-gnu/qt5/QtCore -I. -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -35,10 +35,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = ServeurTCP1.0.0
-DISTDIR = /home/pi/Desktop/build-ServeurTCP-Desktop-Debug/.tmp/ServeurTCP1.0.0
+DISTDIR = /home/pi/Desktop/Version\ final_Bateau_GPS_WIFI/build-ServeurTCP-Desktop-Debug/.tmp/ServeurTCP1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) -lQt5Network -lQt5Core -lpthread -latomic 
+LIBS          = $(SUBLIBS) -lQt5Network -lQt5Core -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -59,78 +59,79 @@ OBJECTS       = main.o \
 		clientthreadhandler.o \
 		moc_server.o \
 		moc_clientthreadhandler.o
-DIST          = /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_pre.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/unix.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/linux.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/sanitize.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/gcc-base.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/gcc-base-unix.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/g++-base.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/g++-unix.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/qconfig.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_concurrent.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_concurrent_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_core.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_core_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_dbus.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_dbus_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_edid_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_egl_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_fb_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_gui.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_gui_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_input_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_kms_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_network.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_network_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_opengl.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_opengl_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_openglextensions.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_printsupport.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_service_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_sql.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_sql_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_testlib.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_testlib_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_theme_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_widgets.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_widgets_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_xml.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_xml_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qt_functions.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qt_config.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++/qmake.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_post.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/exclusive_builds.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/toolchain.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/default_pre.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/resolve_config.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/default_post.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qml_debug.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/warn_on.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qt.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/resources.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/moc.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/unix/thread.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qmake_use.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/file_copies.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/testcase_targets.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/exceptions.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/yacc.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/lex.prf \
+DIST          = /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/unix.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/linux.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/sanitize.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/gcc-base.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/g++-base.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/g++-unix.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/qconfig.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_core.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_edid_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_egl_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_fb_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_glx_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_gui.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_gui_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_input_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_network.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_network_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_xml.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_xml_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qt_functions.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qt_config.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/toolchain.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/default_pre.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/default_post.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qml_debug.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/warn_on.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qt.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/resources.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/moc.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/unix/thread.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qmake_use.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/file_copies.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/testcase_targets.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/exceptions.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/yacc.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../ServeurTCP/ServeurTCP.pro ../ServeurTCP/server.h \
 		../ServeurTCP/clientthreadhandler.h ../ServeurTCP/main.cpp \
 		../ServeurTCP/server.cpp \
@@ -146,157 +147,159 @@ first: all
 $(TARGET):  $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
-Makefile: ../ServeurTCP/ServeurTCP.pro /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_pre.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/unix.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/linux.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/sanitize.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/gcc-base.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/gcc-base-unix.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/g++-base.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/g++-unix.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/qconfig.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_concurrent.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_concurrent_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_core.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_core_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_dbus.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_dbus_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_edid_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_egl_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_fb_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_gui.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_gui_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_input_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_kms_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_network.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_network_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_opengl.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_opengl_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_openglextensions.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_printsupport.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_service_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_sql.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_sql_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_testlib.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_testlib_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_theme_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_widgets.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_widgets_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_xml.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_xml_private.pri \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qt_functions.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qt_config.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++/qmake.conf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_post.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/exclusive_builds.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/toolchain.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/default_pre.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/resolve_config.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/default_post.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qml_debug.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/warn_on.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qt.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/resources.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/moc.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/unix/thread.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qmake_use.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/file_copies.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/testcase_targets.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/exceptions.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/yacc.prf \
-		/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/lex.prf \
+Makefile: ../ServeurTCP/ServeurTCP.pro /usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/unix.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/linux.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/sanitize.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/gcc-base.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/g++-base.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/common/g++-unix.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/qconfig.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_core.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_edid_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_egl_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_fb_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_glx_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_gui.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_gui_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_input_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_network.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_network_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_xml.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_xml_private.pri \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qt_functions.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qt_config.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_post.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/toolchain.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/default_pre.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/resolve_config.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/default_post.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qml_debug.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/warn_on.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qt.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/resources.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/moc.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/unix/thread.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qmake_use.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/file_copies.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/testcase_targets.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/exceptions.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/yacc.prf \
+		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../ServeurTCP/ServeurTCP.pro \
-		/usr/lib/arm-linux-gnueabihf/libQt5Network.prl \
-		/usr/lib/arm-linux-gnueabihf/libQt5Core.prl
+		/usr/lib/i386-linux-gnu/libQt5Network.prl \
+		/usr/lib/i386-linux-gnu/libQt5Core.prl
 	$(QMAKE) -o Makefile ../ServeurTCP/ServeurTCP.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_pre.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/unix.conf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/linux.conf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/sanitize.conf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/gcc-base.conf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/gcc-base-unix.conf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/g++-base.conf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/common/g++-unix.conf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/qconfig.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_concurrent.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_concurrent_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_core.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_core_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_dbus.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_dbus_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_edid_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_egl_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_fb_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_gui.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_gui_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_input_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_kms_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_network.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_network_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_opengl.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_opengl_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_openglextensions.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_printsupport.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_printsupport_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_service_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_sql.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_sql_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_testlib.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_testlib_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_theme_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_widgets.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_widgets_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_xml.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/modules/qt_lib_xml_private.pri:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qt_functions.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qt_config.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++/qmake.conf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/spec_post.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/exclusive_builds.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/toolchain.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/default_pre.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/resolve_config.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/default_post.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qml_debug.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/warn_on.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qt.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/resources.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/moc.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/unix/thread.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/qmake_use.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/file_copies.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/testcase_targets.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/exceptions.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/yacc.prf:
-/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/lex.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/common/unix.conf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/common/linux.conf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/common/sanitize.conf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/common/gcc-base.conf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/common/gcc-base-unix.conf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/common/g++-base.conf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/common/g++-unix.conf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/qconfig.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_core.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_core_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_dbus_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_devicediscovery_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_edid_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_egl_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_fb_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_glx_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_gui.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_gui_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_input_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_kms_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_network.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_network_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_opengl_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_openglextensions_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_printsupport_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_service_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_sql.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_sql_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_testlib_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_theme_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_vulkan_support_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_widgets_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_xml.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/modules/qt_lib_xml_private.pri:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qt_functions.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qt_config.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_post.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/toolchain.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/default_pre.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/resolve_config.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/default_post.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qml_debug.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/warn_on.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qt.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/resources.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/moc.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/unix/thread.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/qmake_use.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/file_copies.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/testcase_targets.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/exceptions.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/yacc.prf:
+/usr/lib/i386-linux-gnu/qt5/mkspecs/features/lex.prf:
 ../ServeurTCP/ServeurTCP.pro:
-/usr/lib/arm-linux-gnueabihf/libQt5Network.prl:
-/usr/lib/arm-linux-gnueabihf/libQt5Core.prl:
+/usr/lib/i386-linux-gnu/libQt5Network.prl:
+/usr/lib/i386-linux-gnu/libQt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../ServeurTCP/ServeurTCP.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
@@ -311,7 +314,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents /usr/lib/i386-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ServeurTCP/server.h ../ServeurTCP/clientthreadhandler.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../ServeurTCP/main.cpp ../ServeurTCP/server.cpp ../ServeurTCP/clientthreadhandler.cpp $(DISTDIR)/
 
@@ -342,8 +345,8 @@ compiler_rcc_clean:
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
-moc_predefs.h: /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/data/dummy.cpp
-	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib/arm-linux-gnueabihf/qt5/mkspecs/features/data/dummy.cpp
+moc_predefs.h: /usr/lib/i386-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
+	g++ -pipe -g -std=gnu++11 -Wall -W -dM -E -o moc_predefs.h /usr/lib/i386-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all: moc_server.cpp moc_clientthreadhandler.cpp
 compiler_moc_header_clean:
@@ -351,12 +354,12 @@ compiler_moc_header_clean:
 moc_server.cpp: ../ServeurTCP/server.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/pi/Desktop/build-ServeurTCP-Desktop-Debug/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/home/pi/Desktop/ServeurTCP -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I. -I/usr/include/c++/8 -I/usr/include/arm-linux-gnueabihf/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/arm-linux-gnueabihf/8/include -I/usr/local/include -I/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed -I/usr/include/arm-linux-gnueabihf -I/usr/include ../ServeurTCP/server.h -o moc_server.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/pi/Desktop/Version final_Bateau_GPS_WIFI/build-ServeurTCP-Desktop-Debug/moc_predefs.h' -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/pi/Desktop/Version final_Bateau_GPS_WIFI/ServeurTCP' -I/usr/include/i386-linux-gnu/qt5 -I/usr/include/i386-linux-gnu/qt5/QtNetwork -I/usr/include/i386-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/8 -I/usr/include/i386-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/i686-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/i686-linux-gnu/8/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include ../ServeurTCP/server.h -o moc_server.cpp
 
 moc_clientthreadhandler.cpp: ../ServeurTCP/clientthreadhandler.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/pi/Desktop/build-ServeurTCP-Desktop-Debug/moc_predefs.h -I/usr/lib/arm-linux-gnueabihf/qt5/mkspecs/linux-g++ -I/home/pi/Desktop/ServeurTCP -I/usr/include/arm-linux-gnueabihf/qt5 -I/usr/include/arm-linux-gnueabihf/qt5/QtNetwork -I/usr/include/arm-linux-gnueabihf/qt5/QtCore -I. -I/usr/include/c++/8 -I/usr/include/arm-linux-gnueabihf/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/arm-linux-gnueabihf/8/include -I/usr/local/include -I/usr/lib/gcc/arm-linux-gnueabihf/8/include-fixed -I/usr/include/arm-linux-gnueabihf -I/usr/include ../ServeurTCP/clientthreadhandler.h -o moc_clientthreadhandler.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include '/home/pi/Desktop/Version final_Bateau_GPS_WIFI/build-ServeurTCP-Desktop-Debug/moc_predefs.h' -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++ -I'/home/pi/Desktop/Version final_Bateau_GPS_WIFI/ServeurTCP' -I/usr/include/i386-linux-gnu/qt5 -I/usr/include/i386-linux-gnu/qt5/QtNetwork -I/usr/include/i386-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/8 -I/usr/include/i386-linux-gnu/c++/8 -I/usr/include/c++/8/backward -I/usr/lib/gcc/i686-linux-gnu/8/include -I/usr/local/include -I/usr/lib/gcc/i686-linux-gnu/8/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include ../ServeurTCP/clientthreadhandler.h -o moc_clientthreadhandler.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

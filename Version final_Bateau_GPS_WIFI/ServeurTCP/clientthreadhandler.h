@@ -26,6 +26,7 @@ private:
     QTcpSocket *socket;
     qintptr socketDescriptor;
     QMessageLogger logger;
+    std::string _timestamp;
 };
 
 #endif // CLIENTTHREADHANDLER_H
