@@ -7,3 +7,4 @@ Projet d'étude dans le cadre d'un BTS SNIR (2ème année)
 Mission
 - Réaliser un système permettant le suivi de régates
 
+![Image description]https://imgur.com/dYpA95b
