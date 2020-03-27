@@ -23,6 +23,7 @@ public:
     std::string getVitesse();
     std::string getMode();
     time_t getTimestamp();
+    std::vector<std::map<std::string, std::string>> disconnectedData;
 
 private:
     QMessageLogger logger;
@@ -33,6 +34,7 @@ private:
     std::string _vitesse;
     std::string _mode;
     time_t _timestamp;
+
 };
 
 #endif // GPS_H

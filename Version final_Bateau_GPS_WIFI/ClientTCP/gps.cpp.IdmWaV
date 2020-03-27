@@ -23,7 +23,6 @@ GPS::GPS(QObject* parent) : QThread(parent)
     _dLatitude = "\r";
     _dLongitude = "\r";
     _vitesse = "\r";
-    prvTimestamp = 0;
     _timestamp = 0;
 
     logger.info("Initialisation du GPS");
@@ -100,7 +99,7 @@ void GPS::run()
         }
         else
         {
-            logger.info(response);
+            //logger.info(response);
             //vérification de la bonne trame récupérée
             if (response[1]=='$'&& response[2]=='G'&&response[3]=='P'&&response[4]=='R'&&response[5]=='M'&&response[6]=='C'&& strlen(response)>=60)
             {
@@ -162,7 +161,5 @@ std::string GPS::getLongitude() { return _longitude; };
 std::string GPS::getDlatitude() { return _dLatitude; };
 std::string GPS::getDlongitude() { return _dLongitude; };
 std::string GPS::getVitesse() { return _vitesse; };
-
 time_t GPS::getTimestamp() { return _timestamp; };
-
 
