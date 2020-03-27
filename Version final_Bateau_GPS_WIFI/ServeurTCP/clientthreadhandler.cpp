@@ -14,9 +14,11 @@
 #include <iostream>
 #include <sstream>
 
+using namespace std;
+
 // Functions prototypes
 static inline QString toIPv4Address(QHostAddress source);
-static inline std::map<std::string, std::string> string_to_map(std::string data);
+static inline map<string, string> string_to_map(string data);
 
 ClientThreadHandler::ClientThreadHandler(qintptr ID, QObject* parent) : QThread(parent)
 {
@@ -67,31 +69,35 @@ void ClientThreadHandler::incomingData()
          return;
 
     QByteArray data = socket->readAll();
-    std::string sData = data.toStdString();
-    std::map<std::string, std::string> gpsInfos = string_to_map(sData);
+    string sData = data.toStdString();
+    map<string, string> gpsInfos = string_to_map(sData);
 
-    qDebug() << "Informations reçu: " << data;
-
-    std::string mode = gpsInfos["Mode"];
-    std::string vitesse = gpsInfos["Vitesse"];
-    std::string latitude = gpsInfos["Latitude"] ;
-    std::string longitude = gpsInfos["Longitude"];
-    std::string dLatitude = gpsInfos["dLatitude"];
-    std::string dLongitude = gpsInfos["dLongitude"];
-    std::string timestamp = gpsInfos["Timestamp"];
+    string mode = gpsInfos["Mode"];
+    string vitesse = gpsInfos["Vitesse"];
+    string latitude = gpsInfos["Latitude"] ;
+    string longitude = gpsInfos["Longitude"];
+    string dLatitude = gpsInfos["dLatitude"];
+    string dLongitude = gpsInfos["dLongitude"];
+    string timestamp = gpsInfos["Timestamp"];
 
     // Si le timestamp reçu est différent du précédent, c'est que les coordonnées ont bien été actualisées
     // Note : le précédent timestamp à été stocké au préalable dans la variable...
     if(_timestamp != timestamp)
     {
         _timestamp = timestamp;
+        // Ici il faut gérer l'ajout des données dans la BDD
+        // en attente que les aures finissent la partie BDD
         if(mode == "COUREUR")
         {
-
+            printf("[DATA] Coureur %s => Vitesse: %s ; Latitude: %s ; Longitude: %s ; dLatitude: %s ; dLongitude: %s ; Timestamp: %s [FIN]",
+                toIPv4Address(socket->peerAddress()).toStdString().c_str(), vitesse.c_str(), latitude.c_str(),
+                longitude.c_str(), dLatitude.c_str(), dLongitude.c_str(), timestamp.c_str());
         }
         else if(mode == "BALISE")
         {
-
+            printf("[DATA] Balise %s => Latitude: %s ; Longitude: %s ; dLatitude: %s ; dLongitude: %s ; Timestamp: %s [FIN]",
+                toIPv4Address(socket->peerAddress()).toStdString().c_str(), latitude.c_str(),
+                longitude.c_str(), dLatitude.c_str(), dLongitude.c_str(), timestamp.c_str());
         }
     }
 }
@@ -118,13 +124,13 @@ QString toIPv4Address(QHostAddress qhostaddr)
     return "bad ip";
 }
 
-std::map<std::string, std::string> string_to_map(std::string input)
+map<string, string> string_to_map(string input)
 {
-    std::istringstream iss(input.c_str());
-    std::map<std::string, std::string> flags;
-    std::string token;
+    istringstream iss(input.c_str());
+    map<string, string> flags;
+    string token;
     bool first = true;
-    while (std::getline(iss, token, ',')) {
+    while (getline(iss, token, ',')) {
         size_t pos = token.find(':');
         if(first == true)
             flags[token.substr(0, pos)] = token.substr(pos + 1);

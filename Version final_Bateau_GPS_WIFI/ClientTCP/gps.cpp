@@ -23,7 +23,6 @@ GPS::GPS(QObject* parent) : QThread(parent)
     _dLatitude = "\r";
     _dLongitude = "\r";
     _vitesse = "\r";
-    prvTimestamp = 0;
     _timestamp = 0;
 
     logger.info("Initialisation du GPS");
@@ -139,7 +138,7 @@ void GPS::run()
                          string tmp(vit);
                          _vitesse = tmp;
                          // On définit ici le timestamp... on suppose que toutes les précédentes valeurs sont déjà remplies...
-                         _timestamp = std::time(0);
+                         _timestamp = time(0);
                     }
                     p = strtok(NULL, d);
                 }
@@ -150,18 +149,18 @@ void GPS::run()
     }
 }
 
-void GPS::setMode(std::string mode)
+void GPS::setMode(string mode)
 {
     _mode = mode;
     qDebug() << "Mode:" << mode.c_str() << " activé !";
 };
 
-std::string GPS::getMode() { return _mode; };
-std::string GPS::getLatitude() { return _latitude; };
-std::string GPS::getLongitude() { return _longitude; };
-std::string GPS::getDlatitude() { return _dLatitude; };
-std::string GPS::getDlongitude() { return _dLongitude; };
-std::string GPS::getVitesse() { return _vitesse; };
+string GPS::getMode() { return _mode; };
+string GPS::getLatitude() { return _latitude; };
+string GPS::getLongitude() { return _longitude; };
+string GPS::getDlatitude() { return _dLatitude; };
+string GPS::getDlongitude() { return _dLongitude; };
+string GPS::getVitesse() { return _vitesse; };
 
 time_t GPS::getTimestamp() { return _timestamp; };
 

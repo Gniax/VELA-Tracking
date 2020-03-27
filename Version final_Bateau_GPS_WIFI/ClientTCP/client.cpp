@@ -151,7 +151,8 @@ void Client::sendData()
                 gpsData["dLongitude"] = tempDlong;
                 gpsData["Timestamp"] = s_tempTimestamp;
 
-                // Si les données ne sont pas vides on ajoute à condition que c'est pas les mêmes données (donc que le timestamp ai changé)
+                // Si les données déconntés ne sont pas vides on ajoute les données à condition que c'est de nouvelle données
+                // Le timestamp indique si ce sont des nouvelles données, donc on va pouvoir vérifier grâce à lui
                 if(!_gps->disconnectedData.empty())
                 {
                     bool resultIterate = false;
@@ -162,9 +163,10 @@ void Client::sendData()
                     }
                     if(!resultIterate)
                         _gps->disconnectedData.push_back(gpsData);
-                } // sinon la liste est vide et on ajoute
+                }
                 else
                 {
+                    // sinon la liste est vide et on ajoute pour la première fois
                     _gps->disconnectedData.push_back(gpsData);
                 }
             }
