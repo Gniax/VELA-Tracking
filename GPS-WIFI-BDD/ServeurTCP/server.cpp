@@ -1,5 +1,6 @@
 #include "server.h"
 #include "clientthreadhandler.h"
+#include <QString>
 
 #define HOST_ADDRESS "127.0.0.1"
 #define PORT 4242
@@ -27,20 +28,21 @@ void Server::incomingConnection(qintptr socketDescriptor)
 
     // On connecte le signal et le slot
     // Lorsque le thread n'est plus utilisé, il sera supprimé
+    // + possibilité d'executer une query depuis chaue client à la bdd
     connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
-
+    connect(thread, SIGNAL(execQuery(QString, QString)), _sql, SLOT( slotExecQuery(QString, QString)));
     // On démarre le thread, qui va appelé la fonction run de la classe ClientThreadHandler
     thread->start();
 }
 
 // Méthode qui implémente le pointeur vers la base de données
-void Server::setDatabase(Database* db)
+void Server::setSQL(SQLManager* sql)
 {
-    database = db;
+    _sql = sql;
 }
 
 // Méthode qui retourne la base de données
-Database* Server::getDatabase()
+SQLManager* Server::getSQL()
 {
-    return database;
+    return _sql;
 }

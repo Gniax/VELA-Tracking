@@ -5,6 +5,7 @@
 #include <QAbstractSocket>
 #include <QTextStream>
 #include <QFile>
+#include <QString>
 #include <QDataStream>
 #include <QEventLoop>
 #include <sys/socket.h>
@@ -12,9 +13,12 @@
 #include <netinet/tcp.h>
 #include <string>
 #include <iostream>
+#include <QSqlDatabase>
 #include <sstream>
 #include <server.h>
-#include <database.h>
+#include <sqlmanager.h>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -93,12 +97,17 @@ void ClientThreadHandler::incomingData()
     if (_timestamp != timestamp)
     {
         _timestamp = timestamp;
-        Database* database = server->getDatabase();
+        SQLManager* sql = server->getSQL();
 
-        if(database != nullptr && database->localConnected)
+        if(sql != nullptr && sql->isLocalConnected())
         {
-            database->insertIntoDB("local", "course", toIPv4Address(socket->peerAddress()).toStdString().c_str(), vitesse.c_str(), latitude.c_str(), longitude.c_str(), timestamp.c_str());
+            string participant = toIPv4Address(socket->peerAddress()).toStdString().c_str();
+            const string query = "INSERT INTO course (participant, vitesse, latitude, longitude, temps) VALUES (\""+participant+"\", \""+vitesse.c_str()+
+                           "\", \""+latitude.c_str()+"\", \""+longitude.c_str()+"\", "+timestamp.c_str()+");";
+
+            emit(execQuery("local", QString::fromStdString(query)));
         }
+
         // Ici il faut gérer le signal vers l'IHM
         if (mode == "COUREUR")
         {

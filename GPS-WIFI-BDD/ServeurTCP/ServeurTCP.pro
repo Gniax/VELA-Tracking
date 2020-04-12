@@ -20,7 +20,7 @@ SOURCES += \
         main.cpp \
     server.cpp \
     clientthreadhandler.cpp \
-    database.cpp
+    sqlmanager.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -30,7 +30,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     server.h \
     clientthreadhandler.h \
-    database.h
+    sqlmanager.h
 
 unix:!macx: LIBS += -L$$PWD/lib/ -lmysql
 

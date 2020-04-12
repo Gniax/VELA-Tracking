@@ -4,7 +4,7 @@
 #include <QTcpServer>
 #include <QThreadPool>
 #include <QDebug>
-#include "database.h"
+#include "sqlmanager.h"
 
 class Server : public QTcpServer
 {
@@ -12,8 +12,8 @@ class Server : public QTcpServer
 public:
     explicit Server(QObject *parent = 0);
     void startServer();
-    void setDatabase(Database* bdd);
-    Database* getDatabase();
+    void setSQL(SQLManager* sql);
+    SQLManager* getSQL();
 protected:
     void incomingConnection(qintptr socketDescriptor);
 
@@ -22,7 +22,7 @@ signals:
 public slots:
 
 private:
-    Database* database;
+    SQLManager* _sql;
 };
 
 #endif // MYSERVER_H

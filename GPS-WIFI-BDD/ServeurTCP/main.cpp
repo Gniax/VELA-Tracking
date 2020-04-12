@@ -6,7 +6,7 @@
 
 // Own headers
 #include <server.h>
-#include <database.h>
+#include <sqlmanager.h>
 #include <iostream>
 
 using namespace std;
@@ -15,13 +15,13 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
+    SQLManager* sql = new SQLManager(0);
+    sql->startLocalDatabase("localhost", "root", "pi", "bdd_mer");
+
     Server Serveur;
     Serveur.startServer();
 
-    Database* bddLocal = new Database();
-    bddLocal->startLocal("127.0.0.1", "root", "pi", "bdd_mer");
-
-    Serveur.setDatabase(bddLocal);
+    Serveur.setSQL(sql);
 
     return a.exec();
 }

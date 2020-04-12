@@ -17,7 +17,9 @@ public:
     void run();
 
 signals:
+    void execQuery(QString target, QString query);
     void error(QAbstractSocket::SocketError error);
+    void sendToDB(std::string target, std::string table, std::string participant, std::string vitesse, std::string latitude, std::string longitude, std::string timestamp);
 
 public slots:
     void connectionClosed();
@@ -25,6 +27,7 @@ public slots:
 
 private:
     Server* server;
+    SQLManager* sql;
     QTcpSocket *socket;
     qintptr socketDescriptor;
     QMessageLogger logger;
