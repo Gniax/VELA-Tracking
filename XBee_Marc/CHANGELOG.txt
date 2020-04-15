@@ -1,0 +1,24 @@
+4 avril 2020
+└ Passage de Ubuntu core a Raspbian Buster Lite pour une installation Headless
+
+6 avril 2020
+└ Réunion ZOOM
+└ Création d'un modèle + diagramme de class
+  └ Envoi à Maxime
+
+9 avril 2020
+└ Test de connectivité avec la lib GrovePi+ 
+  └ Résultat: erreur de port i2c
+└ Test de connectivité sur le port UART du Grove SHIELD
+
+10 avril 2020
+└ GrovePi+ opérationnelle
+└ Début de test de code
+  └ RPiser
+  └ Serial GrovePi
+
+12 avril 2020
+└ Possibilité de ne pas pouvoir tester la connectivité sans 2 XBee
+
+14 avril 2020
+└ Réponse de LAVALLEE: On verra à la prochaine réunio zoom
