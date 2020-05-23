@@ -1,0 +1,66 @@
+#ifndef GRAPHICMANAGER_H
+#define GRAPHICMANAGER_H
+
+#include <velawindow.h>
+#include <QGraphicsScene>
+#include <QMutex>
+
+class VelaWindow;
+class Coureur;
+
+class GraphicManager : public QObject
+{
+    Q_OBJECT
+public:
+    explicit GraphicManager(VelaWindow* parent,int gx,int gy);
+    void SetBaseView();
+    void SetGlobalView(QList<Coureur*> allcoureur,QList<Balise*> allbalise);
+    void SetCoureurView(Coureur* coureurSelected, QList<Balise*> allbalise);
+    void SetBaliseView(Balise* baliseSelected, QList<Coureur*> allcoureur, QList<Balise*> allbalise);
+    QGraphicsScene* sceneBase;
+    QGraphicsScene* sceneGlobal;
+    QGraphicsScene* sceneCoureur;
+    QGraphicsScene* sceneBalise;
+    QTimer* _timerRunning;
+    QTimer* _timerGlobalView;
+    bool _running;
+    int _timeElapsed;
+    QGraphicsTextItem* textTime;
+    QGraphicsTextItem* textTimeCoureur;
+    bool isSelectedGlobalView;
+    bool isSelectedCoureurView;
+
+private:
+    void updateTimeGlobalView();
+    void updateTimeCoureurView();
+    QString GetTranslatedTime(int timeMs);
+    void CalibrateView(QList<float> allcoordlongitude, QList<float> alcoordlatitude, QList<Balise*> allbalise);
+    int GetXFromLongitude(float longitude);
+    int GetYFromLatitude(float latitude);
+    QString _timeGlobalView;
+    QMutex mutexGlobaleView;
+    QMutex mutexCoureurView;
+    Coureur* _currentSelectedCoureur;
+    int sceneSizeX;
+    int sceneSizeY;
+    float areaCoursePixelX;
+    float areaCoursePixelY;
+    float minLongitude;
+    float minLatitude;
+    float maxLongitude;
+    float maxLatitude;
+    float dimCourseLong;
+    float dimCourseLat;
+    int diagPixelPosCoureur;
+    int diagPixelPosBalise;
+    int posZoneCourseHX;
+    int posZoneCourseHY;
+    int posZoneCourseBX;
+    int posZoneCourseBY;
+
+private slots:
+    void UpdateTimer();
+    void UpdateTimerGlobalView();
+};
+
+#endif // GRAPHICMANAGER_H
